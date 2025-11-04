@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermarket</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Supermarket (Serverless)</h1>
+
+    <section class="card">
+      <h2>Productos</h2>
+  <form id="form-product" class="row">
+  <input id="sku" placeholder="SKU (auto)" />
+  <input id="brand" placeholder="Marca (opcional)">
+  <input id="name" placeholder="Nombre" required>
+  <input id="size" placeholder="Tamaño (ej. 1L / 500ML)">
+  <input id="variant" placeholder="Variante (ej. ZERO)">
+  <input id="category" placeholder="Categoría">
+  <input id="price" type="number" step="0.01" min="0" placeholder="Precio" required>
+  <input id="stock" type="number" step="1" min="0" placeholder="Stock" required>
+  <button>Agregar</button>
+</form>
+
+      <div class="row">
+        <input id="search" placeholder="Buscar SKU/Nombre">
+        <button id="btn-search">Buscar</button>
+      </div>
+
+      <table id="tbl-products">
+        <thead><tr><th>SKU</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Venta rápida</h2>
+      <form id="form-sale" class="row">
+        <input id="sale-product-id" placeholder="ID producto o SKU">
+        <input id="sale-qty" type="number" step="1" min="1" value="1">
+        <button>Vender</button>
+        <a id="sale-print" target="_blank" class="link" style="display:none">Imprimir</a>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Movimientos de stock</h2>
+      <form id="form-move" class="row">
+        <input id="move-product-id" placeholder="ID producto">
+        <select id="move-type">
+          <option value="IN">Ingreso</option>
+          <option value="OUT">Egreso</option>
+        </select>
+        <input id="move-qty" type="number" step="1" min="1" value="1">
+        <input id="move-reason" placeholder="Motivo">
+        <button>Aplicar</button>
+      </form>
+      <table id="tbl-moves">
+        <thead><tr><th>Fecha</th><th>ProdID</th><th>Tipo</th><th>Cant.</th><th>Motivo</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

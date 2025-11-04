@@ -1,14 +1,20 @@
 {
-  "name": "supermarket-mongo-vanilla",
+  "name": "supermarket-mongo-vanilla-serverless",
+  "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*"
-  ],
+  "type": "commonjs",
   "scripts": {
-    "dev": "npm run dev -w apps/api",
-    "build": "npm run build -w apps/api"
+    "start": "vercel dev",
+    "build": "echo 'Build will be handled by Vercel'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "mongodb": "^6.6.2"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@types/node": "^24.10.0",
+    "@vercel/node": "^3.0.0",
+    "typescript": "^5.6.3",
+    "vercel": "^48.8.2"
   }
 }
