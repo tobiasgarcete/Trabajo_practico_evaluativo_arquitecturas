@@ -9,6 +9,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const db = await getDb();
   const productsCol = db.collection('products');
 
+  // Extraer ID si viene en la URL: /api/products?id=xxx
+  const id = req.query.id as string | undefined;
+
+  // PUT /api/products?id=xxx (Actualizar)
+  if (req.method === 'PUT' && id) {
+    const body = req.body as Partial<Product>;
+    body.updatedAt = new Date();
+    
+    await productsCol.updateOne({ _id: asId(id) }, { $set: body });
+    const updated = await productsCol.findOne({ _id: asId(id) });
+    
+    if (!updated) return send(res, 404, { error: 'Not found' });
+    return send(res, 200, { ...updated, _id: updated._id.toString() });
+  }
+
+  // DELETE /api/products?id=xxx (Borrar)
+  if (req.method === 'DELETE' && id) {
+    await productsCol.deleteOne({ _id: asId(id) });
+    return send(res, 200, { ok: true });
+  }
+
   // GET /api/products?search=&category=
   if (req.method === 'GET') {
     const search = (req.query.search as string) || '';

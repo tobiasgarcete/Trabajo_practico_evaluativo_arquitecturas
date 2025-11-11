@@ -99,7 +99,7 @@ document.addEventListener('click', async (e) => {
   const edit = e.target.closest('[data-edit]');
   if (del) {
     if (confirm('¿Borrar producto?')) {
-      await api('/api/products/' + del.dataset.del, { method:'DELETE' });
+      await api('/api/products?id=' + del.dataset.del, { method:'DELETE' });
       await loadProducts();
     }
   }
@@ -107,7 +107,7 @@ document.addEventListener('click', async (e) => {
     const id = edit.dataset.edit;
     const price = prompt('Nuevo precio:');
     if (price) {
-      await api('/api/products/' + id, { method:'PUT', body: JSON.stringify({ price: parseFloat(price) }) });
+      await api('/api/products?id=' + id, { method:'PUT', body: JSON.stringify({ price: parseFloat(price) }) });
       await loadProducts();
     }
   }
