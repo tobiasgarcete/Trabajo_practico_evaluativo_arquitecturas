@@ -26,6 +26,27 @@ body {
   padding: 20px;
 }
 
+.loader {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
